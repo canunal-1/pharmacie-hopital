@@ -11,3 +11,6 @@ coverage/
 *.db
 *.db-shm
 *.db-wal
+
+# Fichiers de configuration spécifiques Serveur
+dist-server/
