@@ -45,6 +45,7 @@
     "autoprefixer": "^10.4.21",
     "regenerator-runtime": "^0.14.1",
     "tailwindcss": "^4.1.14",
+    "terser": "^5.46.0",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
