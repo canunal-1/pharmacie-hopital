@@ -575,14 +575,15 @@ app.post('/api/admin/sous-categories', authMiddleware, (req: any, res) => {
 // ============================================
 
 // Serve static files from the React app in production
-const distPath = path.resolve(__dirname, 'dist');
+// process.cwd() ensures it points to the root directory whether we run with tsx or node from the dist-server folder.
+const distPath = path.join(process.cwd(), 'dist');
 app.use(express.static(distPath));
 
 // For any other route, send the React index.html
 app.get('*', (req, res) => {
     // Only intercept GET requests that do not start with /api and do not start with /lien
     if (!req.path.startsWith('/api') && !req.path.startsWith('/lien')) {
-        res.sendFile(path.resolve(distPath, 'index.html'));
+        res.sendFile(path.join(distPath, 'index.html'));
     }
 });
 
