@@ -22,7 +22,7 @@ const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID || 'price_VOTRE_PRICE_ID_ICI
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 
 const stripe = new Stripe(STRIPE_SECRET_KEY);
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || 'MISSING_API_KEY' });
 
 // Init database
 const db = initDatabase();
