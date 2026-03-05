@@ -1,17 +1,27 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import bcryptjs from 'bcryptjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const isProduction = process.env.NODE_ENV === 'production';
-// If in production on Render, save db to the persistent disk mount path. Otherwise, local root.
+
+// Render mount path is setup as /opt/render/project/src/data in render.yaml
+// But process.cwd() on Render is usually /opt/render/project/src
+// So we can simply resolve 'data/pharmacie.db' relative to process.cwd()
 const DB_PATH = isProduction
-  ? '/opt/render/project/src/data/pharmacie.db'
+  ? path.join(process.cwd(), 'data', 'pharmacie.db')
   : path.resolve(__dirname, '..', 'pharmacie.db');
 
 export function initDatabase(): Database.Database {
+  // Ensure the directory exists before attempting to create the db file
+  const dbDir = path.dirname(DB_PATH);
+  if (!fs.existsSync(dbDir)) {
+    fs.mkdirSync(dbDir, { recursive: true });
+  }
+
   const db = new Database(DB_PATH);
 
   // Enable WAL mode for better performance
