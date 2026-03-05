@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-          {/* Public routes */}
+          {/* Public routes wrapper with navbar/footer */}
           <Route path="/*" element={
             <div className="flex flex-col min-h-screen bg-white font-sans text-slate-900">
               <Navbar />
