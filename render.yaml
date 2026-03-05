@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: pharmacie-hopital
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 3000   # Render will provide its own PORT but having a default is good
+      - key: NODE_ENV
+        value: production
+      # These keys MUST be filled in the Render dashboard:
+      # - GEMINI_API_KEY
+      # - JWT_SECRET
+      # - STRIPE_SECRET_KEY
+      # - STRIPE_WEBHOOK_SECRET
+      # - STRIPE_PRICE_ID
+      # - CLIENT_URL (should be your Render URL, ex: https://pharmacie-hopital.onrender.com)
+    disk:
+      name: my-sqlite-db
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
