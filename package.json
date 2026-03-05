@@ -7,7 +7,7 @@
     "dev": "vite --port=3000 --host=0.0.0.0",
     "server": "tsx server.ts",
     "dev:full": "concurrently \"npm run dev\" \"npm run server\"",
-    "build": "vite build && tsc server.ts db/init.ts --outDir dist-server --module ESNext --moduleResolution Node",
+    "build": "vite build && tsc server.ts db/init.ts --outDir dist-server --module ESNext --moduleResolution Node --esModuleInterop --target ES2022 --skipLibCheck",
     "start": "node dist-server/server.js",
     "preview": "vite preview",
     "db:init": "tsx db/init.ts",
